@@ -1,0 +1,3 @@
+%user_approxi 生成自定义用户时间序列
+%round_cycle 序列随机左右移位
+%shift 决定左右移位随机权重列向量
