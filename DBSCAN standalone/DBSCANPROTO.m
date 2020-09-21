@@ -4,7 +4,7 @@ close all;
 clc;
 %image = imread('1.png');
 %disp(image); %该程序改编于普通的“培养皿菌群”一类图像的DBSCAN代码，并重新测试，此处IMAGE指的就是原生“菌群”的图像文件（超低像素黑白图）
-user_approxi;
+user_approxi; %该程序地址 PowerloadClustering/用户数据拟合/user_approxi.m
 %[x1,y] = find (image == 1);
 data = [d,y2];
 %data = xn;%←该调用未实现
