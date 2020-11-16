@@ -1,25 +1,25 @@
 function init = kmeans_init(X,k)
-%Ñ¡Ôñ³õÊ¼µã
-%X£¬Ñù±¾£¨ÐÐÎªÑù±¾£¬ÁÐÎªÊôÐÔ£¬¼´200¸öÑù±¾£¬96¸öÊôÐÔ£¬Ñù±¾Îª200*96£©
-%k£¬¾ÛÀàÑù±¾Êý
-%init,·µ»Ø³õÊ¼ÖÐÐÄ
+%é€‰æ‹©åˆå§‹ç‚¹
+%Xï¼Œæ ·æœ¬ï¼ˆè¡Œä¸ºæ ·æœ¬ï¼Œåˆ—ä¸ºå±žæ€§ï¼Œå³200ä¸ªæ ·æœ¬ï¼Œ96ä¸ªå±žæ€§ï¼Œæ ·æœ¬ä¸º200*96ï¼‰
+%kï¼Œèšç±»æ ·æœ¬æ•°
+%init,è¿”å›žåˆå§‹ä¸­å¿ƒ
 
-[m,n] = size(X);%k×éÊý¾Ý¹²mÐÐ£¨mÌõÇúÏß£© nÁÐ£¨ÈÕ²ÉÑù¸öÊý£©
-init = zeros(k,n);%init ÊÇkÐÐ nÁÐµÄ0¾ØÕó
-D = zeros(m,1);%D ÊÇmÐÐ£¨mÌõÇúÏß£© 1ÁÐµÄ0¾ØÕó
+[m,n] = size(X);%kç»„æ•°æ®å…±mè¡Œï¼ˆmæ¡æ›²çº¿ï¼‰nåˆ—ï¼ˆæ—¥é‡‡æ ·ä¸ªæ•°ï¼‰
+init = zeros(k,n);%init æ˜¯kè¡Œ nåˆ—çš„0çŸ©é˜µ
+D = zeros(m,1);%D æ˜¯mè¡Œï¼ˆmæ¡æ›²çº¿ï¼‰ 1åˆ—çš„0å‘é‡
 init(1,:) = X(1,:);
 for i=2:k
     for j=1:m
         temp=0;
         for c=1:n
-            temp = temp+(X(j,c)-init(i-1,c))^2;%½«XÖÐµÄµÚjÐÐËùÓÐÔªËØÓëµÚkÀà´ØµÄÖÐÐÄÇúÏßÖ®²î£¬¡Á2£¬²¢ÇóºÍ
+            temp = temp+(X(j,c)-init(i-1,c))^2;%å°†Xä¸­çš„ç¬¬jè¡Œæ‰€æœ‰å…ƒç´ ä¸Žç¬¬kç±»ç°‡çš„ä¸­å¿ƒæ›²çº¿ä¹‹å·®ï¼Œx2ï¼Œå¹¶æ±‚å’Œ
         end
-        D(j) = D(j) + temp;%·µ»ØµÚjÐÐµÄ²îÖµÖ®ºÍÓÚÁÐÏòÁ¿DÖÐ
+        D(j) = D(j) + temp;%è¿”å›žç¬¬jè¡Œçš„å·®å€¼ä¹‹å’ŒäºŽåˆ—å‘é‡Dä¸­
         
     end
     
-    idx = find(D(:) == max(D));%ÕÒµ½ÓëÉÏÒ»´ØÖÐÐÄÇúÏß²î¾à×î´óµÄÒ»×éÊý¾Ý£¬»ñµÃÆäÔÚÔ­Ê¼Êý¾ÝÖÐµÄÐÐÊý£¨idx£©
+    idx = find(D(:) == max(D));%æ‰¾åˆ°ä¸Žä¸Šä¸€ç°‡ä¸­å¿ƒæ›²çº¿å·®è·æœ€å¤§çš„ä¸€ç»„æ•°æ®ï¼ŒèŽ·å¾—å…¶åœ¨åŽŸå§‹æ•°æ®ä¸­çš„è¡Œæ•°ï¼ˆidxï¼‰
     idx = idx(1,1);
-    init(i,:) = X(idx,:);%È¡¸ÃÇúÏß×÷ÎªµÚiÐÐµÄÖÐÐÄÇúÏß£¬×Ô´Ë´ý¶¨½áÊø£¬½øÈëÏÂÒ»ÌõÇúÏßÖÐÐÄµÄ´ý¶¨
+    init(i,:) = X(idx,:);%å–è¯¥æ›²çº¿ä½œä¸ºç¬¬iè¡Œçš„ä¸­å¿ƒæ›²çº¿ï¼Œè‡ªæ­¤å¾…å®šç»“æŸï¼Œè¿›å…¥ä¸‹ä¸€æ¡æ›²çº¿ä¸­å¿ƒçš„å¾…å®š
 end
 end

@@ -1,4 +1,4 @@
-%¾ÛÀà
+%èšç±»
 
 clear all
 load('D3.mat')
@@ -6,7 +6,7 @@ k=5;
 tempo = [];
 [~,n]= size(X);
 for i=1:n% normalized the X
-    tempo(:,i) = normalization(X(:,i),1);%¶ÔÊı¾İ½øĞĞ¹éÒ»»¯
+    tempo(:,i) = normalization(X(:,i),1);%å¯¹æ•°æ®è¿›è¡Œå½’ä¸€åŒ–
 end
 [idx,sc] = kmeans_Gu(X,k);
 notNanValues=sc(~isnan(sc));

@@ -1,42 +1,42 @@
 function [idx,cents,SSE] = kmeans_process(X,cents,k)
-%kmeansËã·¨µü´ú¹ý³Ì
+%kmeansç®—æ³•è¿­ä»£è¿‡ç¨‹
 
-%X£¬Ñù±¾£¨ÐÐÎªÑù±¾£¬ÁÐÎªÊôÐÔ£¬¼´200¸öÑù±¾£¬96¸öÊôÐÔ£¬Ñù±¾Îª200*96£©
-%cents£¬Ñù±¾ÖÐÐÄ
-%k,¾ÛÀàÊýÁ¿
-%idx£¬·µ»ØÃ¿¸öÑù±¾µÄÀà±ð£¬1£¬2£¬...,k
-%cents,·µ»ØÐÂµÄÑù±¾ÖÐÐÄ
-%SSE£¬·µ»Ø¾ù·½Îó²î
+%Xï¼Œæ ·æœ¬ï¼ˆè¡Œä¸ºæ ·æœ¬ï¼Œåˆ—ä¸ºå±žæ€§ï¼Œå³200ä¸ªæ ·æœ¬ï¼Œ96ä¸ªå±žæ€§ï¼Œæ ·æœ¬ä¸º200*96ï¼‰
+%centsï¼Œæ ·æœ¬ä¸­å¿ƒ
+%k,èšç±»æ•°é‡
+%idxï¼Œè¿”å›žæ¯ä¸ªæ ·æœ¬çš„ç±»åˆ«ï¼Œ1ï¼Œ2ï¼Œ...ï¼Œk
+%cents,è¿”å›žæ–°çš„æ ·æœ¬ä¸­å¿ƒ
+%SSEï¼Œè¿”å›žå‡æ–¹è¯¯å·®
 
-%¼ÆËãËùÓÐµãµ½Ã¿¸öÖÐÐÄµÄµÄ¾àÀë
+%è®¡ç®—æ‰€æœ‰ç‚¹åˆ°æ¯ä¸ªä¸­å¿ƒçš„è·ç¦»
 [m,n] = size(X);
 SSE = 0;
 D = zeros(m,k);
 idx = zeros(m,1);
 for c=1:k
     for i=1:m
-        temp =0;%¶ÔmÐÐÊý¾ÝÃ¿»»Ò»´ÎÐÐ°ÑtempÇåÁã
+        temp =0;%å¯¹mè¡Œæ•°æ®æ¯æ¢ä¸€æ¬¡è¡ŒæŠŠtempæ¸…é›¶
         for j=1:n
-            temp = temp+(cents(c,j)-X(i,j))^2;%µÃµ½µÚiÌõÇúÏßµÄµãÓëÖÐÐÄµãµÄ¾àÀë²¢ÇóºÍ
+            temp = temp+(cents(c,j)-X(i,j))^2;%å¾—åˆ°ç¬¬iæ¡æ›²çº¿çš„ç‚¹ä¸Žä¸­å¿ƒç‚¹çš„è·ç¦»å¹¶æ±‚å’Œ
         end
-        D(i,c) = temp;%°ÑµÚiÌõµÄÖÐÐÄ²î¾àÖ®ºÍ·ÅÈëD¾ØÕó£¨mÐÐkÁÐ£©µÄµÚiÐÐ µÚcÁÐ£¨cÖ¸ÓëÄ³ÀàµÄÖÐÐÄÇúÏß±êºÅ£©
+        D(i,c) = temp;%æŠŠç¬¬iæ¡çš„ä¸­å¿ƒå·®è·ä¹‹å’Œæ”¾å…¥DçŸ©é˜µï¼ˆmè¡Œkåˆ—ï¼‰çš„ç¬¬iè¡Œ ç¬¬cåˆ—ï¼ˆcæŒ‡ä¸ŽæŸç±»çš„ä¸­å¿ƒæ›²çº¿æ ‡å·ï¼‰
     end    
 end
 
-%¼ÆËãidxºÍSSE
+%è®¡ç®—idxå’ŒSSE
 for i=1:m
-    temp = find(D(i,:) == min(D(i,:)));%ÕÒµ½DÖÐÃ¿ÐÐ×îÐ¡Öµ£¬×îÐ¡ÖµÊý¾ÝµÄ*****ÁÐÊý*****Í¨¹ýfindº¯Êý¼ÇÂ¼ÈëidxµÄµÚiÐÐ¡·¡·¡·¡·¡·ËùÒÔidxÀïÃæ¶¼ÊÇÕûÊý
+    temp = find(D(i,:) == min(D(i,:)));%æ‰¾åˆ°Dä¸­æ¯è¡Œçš„æœ€å°å€¼ï¼Œæœ€å°å€¼æ•°æ®çš„****åˆ—æ•°*****é€šè¿‡findå‡½æ•°è®°å½•å¦‚idxçš„ç¬¬iè¡Œã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹æ‰€ä»¥idxé‡Œé¢éƒ½æ˜¯æ•´æ•°
     idx(i) = temp(1,1);
-    SSE = SSE+D(i,idx(i));%½«DÖÐÃ¿ÐÐ×îÐ¡ÖµÇóºÍ
+    SSE = SSE+D(i,idx(i));%å°†Dä¸­æ¯è¡Œæœ€å°å€¼æ±‚å’Œ
 end
-%¸üÐÂ¾ÛÀàÖÐÐÄ
+%æ›´æ–°èšç±»ä¸­å¿ƒ
 for i=1:k
     new_cents = zeros(1,n);
-    temp = find(idx == k);%ÕÒµ½±»¹éÈëµÚkÀàµÄÇúÏßµÄºÅÊý
-    [m_temp,n_temp] = size(temp);%µÃµ½µÚkÀà´ØÖÐÓÐ¶àÉÙÌõÇúÏß£¨¼ÇÎªm_temp£©
+    temp = find(idx == k);%æ‰¾åˆ°è¢«å½’å…¥ç¬¬kç±»çš„æ›²çº¿çš„å·æ•°
+    [m_temp,n_temp] = size(temp);%å¾—åˆ°ç¬¬kç±»ç°‡ä¸­æœ‰å¤šå°‘æ¡æ›²çº¿ï¼ˆè®°ä¸ºm_tempï¼‰
     for j=1:m_temp
-        new_cents = new_cents(1,:)+X(temp(j),:);%½«ÒÑ¾­¹éÈëµÚiÀàµÄÇúÏßÇóºÍ
+        new_cents = new_cents(1,:)+X(temp(j),:);%å°†å·²ç»å½’å…¥ç¬¬iç±»çš„æ›²çº¿æ±‚å’Œ
     end
-    cents(k,:) = new_cents/m_temp;%¶ÔÉÏÊöºÍÇò¾ùÖµÒÔÐÎ³ÉÐÂµÄÖÐÐÄµã¼¯¡¶¡¶¡¶¡¶¡¶ÎªÊ²Ã´²»ÓÃÔ­ÉúÇúÏß¡¶¡¶¡¶¡¶¡¶ÒòÎªÇóºÍÆ½¾ùºóÎªÄâºÏµÄÇúÏß£¬²»ÔÙÊÇÔ­ÉúÇúÏßµÄÒ»Ô±
+    cents(k,:) = new_cents/m_temp;%å¯¹ä¸Šè¿°å’Œæ±‚å‡å€¼ä»¥å½¢æˆæ–°çš„ä¸­å¿ƒç‚¹é›†ã€Šã€Šã€Šã€Šã€Šã€Šä¸ºä»€ä¹ˆä¸ç”¨åŽŸç”Ÿæ›²çº¿ï¼Ÿï¼Ÿï¼Ÿã€Šã€Šã€Šã€Šã€Šå› ä¸ºæ±‚å’Œå¹³å‡åŽä¸ºæ‹Ÿåˆçš„æ›²çº¿ï¼Œä¸å†æ˜¯åŽŸç”Ÿæ›²çº¿çš„ä¸€å‘˜
 end
 end

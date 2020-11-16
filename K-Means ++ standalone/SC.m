@@ -1,14 +1,14 @@
 function sc = SC(X,idx,k)
-%ÂÖÀªÏµÊý£¬´¦ÓÚ-1µ½+1Ö®¼ä£¬ÖµÔ½´óËµÃ÷¾ÛÀà½á¹ûÔ½ºÃ
+%è½®å»“ç³»æ•°ï¼Œå¤„äºŽ-1åˆ°+1ä¹‹é—´ï¼Œå–å¤§å€¼ä¸ºä¼˜
 
-%X£¬Ñù±¾£¨ÐÐÎªÑù±¾£¬ÁÐÎªÊôÐÔ£¬¼´200¸öÑù±¾£¬96¸öÊôÐÔ£¬Ñù±¾Îª200*96£©
-%idx£¬·µ»ØÃ¿¸öÑù±¾µÄÀà±ð£¬1£¬2£¬...,k
-%k,¾ÛÀàÊýÁ¿
-%sc,·µ»ØÑù±¾µãµÄÂÖÀªÏµÊý
+%Xï¼Œæ ·æœ¬ï¼ˆè¡Œä¸ºæ ·æœ¬ï¼Œåˆ—ä¸ºå±žæ€§ï¼Œå³200ä¸ªæ ·æœ¬ï¼Œ96ä¸ªå±žæ€§ï¼Œæ ·æœ¬ä¸º200*96ï¼‰
+%idxï¼Œè¿”å›žæ¯ä¸ªæ ·æœ¬çš„ç±»åˆ«ï¼Œ1ï¼Œ2ï¼Œ...ï¼Œk
+%k,èšç±»æ•°é‡
+%sc,è¿”å›žæ ·æœ¬ç‚¹çš„è½®å»“ç³»æ•°
 
 
-A = [X,idx];%A±í×÷Îª·ÃÎÊ±í
-B = A;%B±í×÷ÎªÖ´ÐÐ±í
+A = [X,idx];%Aè¡¨ä½œä¸ºè®¿é—®è¡¨
+B = A;%Bè¡¨ä½œä¸ºæ‰§è¡Œè¡¨
 [m,n] = size(X);
 D = zeros(m,k);
 a = zeros(m,1);
@@ -18,32 +18,32 @@ for i=1:m
         if i==j
             continue
         end
-        if A(i,n+1) == B(j,n+1)%Èç¹ûµÚiÌõºÍµÚjÌõÔÚÍ¬Ò»´ØÄÚ
+        if A(i,n+1) == B(j,n+1)%å¦‚æžœç¬¬iæ¡å’Œç¬¬jæ¡åœ¨åŒä¸€ç°‡å†…
             for q=1:n
-                D(i,A(i,n+1)) =  D(i,A(i,n+1))+(A(i,q)-B(j,q))^2;%µÚiÌõºÍµÚjÌõ¸÷µã×÷²î£¬¡Á2£¬ËùÓÐ²îÇóºÍ£¬¼ÇÂ¼ÔÚDÖÐ*********ÊýÁ¿¼¶¸öÊý
-                E(i,A(i,n+1)) = D(i,A(i,n+1));%ÎÞÁÄ¸³Öµ
+                D(i,A(i,n+1)) =  D(i,A(i,n+1))+(A(i,q)-B(j,q))^2;%ç¬¬iæ¡å’Œç¬¬jæ¡å„ç‚¹ä½œå·®ï¼Œx2ï¼Œæ‰€æœ‰å·®æ±‚å’Œï¼Œè®°å½•åœ¨Dä¸­*******************æ•°é‡çº§ä¸ªæ•°
+                E(i,A(i,n+1)) = D(i,A(i,n+1));%æ— èŠèµ‹å€¼
                 a(i) =  E(i,A(i,n+1));
-                E(i,A(i,n+1)) = 0;%ÎÞÁÄÇåÁã¡·¡·¡·¡·¡·¡·Ö¸Á½ÌõÏßÍ¬´Ø¡·¡·¡·¡·¡·ÔÚEÖÐinfÏòÁ¿¿ÉÍ»³ö´ú±íÍ¬Àà´Ø
+                E(i,A(i,n+1)) = 0;%æ— èŠæ¸…é›¶ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹æŒ‡ä¸¤æ¡çº¿åŒç°‡ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹åœ¨Eä¸­infå‘é‡å¯çªå‡ºä»£è¡¨åŒç±»ç°‡
             end
-        else%ÈôµÚiÌõºÍµÚjÌõ²»ÔÚÍ¬Ò»´ØÄÚ
+        else%è‹¥ç¬¬iæ¡å’Œç¬¬jæ¡ä¸åœ¨åŒä¸€ç°‡å†…
             for q=1:n
-                D(i,B(j,n+1)) =  D(i,B(j,n+1))+(A(i,q)-B(j,q))^2;%Í¬Àí£¬×÷²î²¢¼ÇÂ¼*************ÊýÁ¿¼¶ÉÏÇ§
-                E(i,B(j,n+1)) = D(i,B(j,n+1));%¸³Öµ¡·¡·¡·¡·¡·¡·¡·±íÊ¾Á½ÌõÏß²»Í¬´Ø
+                D(i,B(j,n+1)) =  D(i,B(j,n+1))+(A(i,q)-B(j,q))^2;%åŒç†ï¼Œä½œå·®å¹¶è®°å½•**********************æ•°é‡çº§ä¸Šåƒ
+                E(i,B(j,n+1)) = D(i,B(j,n+1));%èµ‹å€¼ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹ã€‹è¡¨ç¤ºä¸¤æ¡çº¿ä¸åŒç°‡
             end
         end        
     end    
 end
 
-%Ñ°ÕÒa(i)¡¢b(i) ¼ÆËãsc
+%å¯»æ‰¾aï¼ˆiï¼‰ã€bï¼ˆiï¼‰ å¹¶ä»¥æ­¤è®¡ç®—sc
 for i=1:m
-    temp = find(E(i,:) == max(E(i,:)));%ÕÒµ½µÚiÌõÇúÏß×÷²îºÍ¾àÀë×îÐ¡(³ý0Íâ)µÄÄÇ¸ö´ØµÄÐòºÅ¡¶¡¶¡¶¡¶ÁÐºÅ£¬¼ÇÎªtemp
-    temp = temp(1,1);%ÈôÓÐÁ½¸öÒÔÉÏ£¬È¡µÚÒ»¸ö
-    b(i) = E(i,temp);%½«¸Ã×îÐ¡Öµ×÷Îªb
+    temp = find(E(i,:) == max(E(i,:)));%æ‰¾åˆ°ç¬¬iæ¡æ›²çº¿ä½œå·®å’Œè·ç¦»æœ€å°ï¼ˆé™¤0å¤–ï¼‰çš„é‚£ä¸ªç°‡çš„åºå·ã€Šã€Šã€Šã€Šåˆ—å·ï¼Œè®°ä¸ºtemp
+    temp = temp(1,1);%è‹¥æœ‰ä¸¤ä¸ªä»¥ä¸Šï¼Œå–ç¬¬ä¸€ä¸ª
+    b(i) = E(i,temp);%å°†è¯¥æœ€å°å€¼ä½œä¸ºb
 end
 
 for i=1:m
-    [numa,~] = size(find(A(:,n+1) == A(i,n+1)));%ÊôÓÚÍ¬Ò»¸ö´ØµÄµãµÄÊýÁ¿
-    a(i) = a(i)/(numa - 1);%ÇóÆ½¾ùÖµ
+    [numa,~] = size(find(A(:,n+1) == A(i,n+1)));%å±žäºŽåŒä¸€ä¸ªç°‡çš„ç‚¹çš„æ•°é‡
+    a(i) = a(i)/(numa - 1);%æ±‚å¹³å‡å€¼
     temp = find(E(i,:) == max(E(i,:)));
     [numb,~] = size(find(A(:,n+1) == temp));
     b(i) = b(i)./numb;   

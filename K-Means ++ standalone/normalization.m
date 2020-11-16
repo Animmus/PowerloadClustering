@@ -1,12 +1,12 @@
 function normal = normalization(x,kind)
-% ¶ÔÊý¾Ý½øÐÐ¹éÒ»»¯´¦Àí
+% å¯¹æ•°æ®è¿›è¡Œå½’ä¸€åŒ–å¤„ç†
 
-%x£¬Ñù±¾£¨ÐÐÎªÑù±¾£¬ÁÐÎªÊôÐÔ£¬¼´200¸öÑù±¾£¬96¸öÊôÐÔ£¬Ñù±¾Îª200*96£©
-%kind£¬¹éÒ»»¯µÄÀà±ð
-%normal£¬·µ»Ø¹éÒ»»¯µÄÊý¾Ý
+%xï¼Œæ ·æœ¬ï¼ˆè¡Œä¸ºæ ·æœ¬ï¼Œåˆ—ä¸ºå±žæ€§ï¼Œå³200ä¸ªæ ·æœ¬ï¼Œ96ä¸ªå±žæ€§ï¼Œæ ·æœ¬ä¸º200*96ï¼‰
+%kindï¼Œå½’ä¸€åŒ–çš„ç±»åˆ«
+%normalï¼Œè¿”å›žå½’ä¸€åŒ–çš„æ•°æ®
 
 if nargin < 2
-    kind = 2;%kind = 1 or 2 ±íÊ¾µÚÒ»Àà»òµÚ¶þÀà¹æ·¶»¯
+    kind = 2;%kind = 1 or 2 è¡¨ç¤ºç¬¬ä¸€ç±»æˆ–ç¬¬äºŒç±»å½’ä¸€åŒ–
 end
 
 [m,n]  = size( x );
