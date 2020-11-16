@@ -6,7 +6,6 @@ function sc = SC(X,idx,k)
 %k,聚类数量
 %sc,返回样本点的轮廓系数
 
-
 A = [X,idx];%A表作为访问表
 B = A;%B表作为执行表
 [m,n] = size(X);
