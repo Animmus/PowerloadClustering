@@ -120,8 +120,9 @@ function [Eps] = epsilon(x,k)
     disp('Eps');
     disp(Eps);
 end
-function draw(data,~,i,color)
 
+function draw(data,~,i,color)
+    
 plot(data(i,2),data(i,3),'*','Color',color,'MarkerFaceColor',color);
 end
 

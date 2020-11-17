@@ -8,7 +8,7 @@ Minpts = 4;%设置点数阈值
 loadnum = 200;%调用用户数，上限200
 for i = 1:loadnum
   A = cunstomer(i).autumn;%读取秋季数据
-  X = simi[A];%用户数据归一化
+  X = simi(A); %用户数据归一化
   [epsilon,sortKdist]=eps1(X,Minpts);%求半径
   [IDX, isnoise] = DBSCAN1(X,epsilon,Minpts);%找出噪声点
   sam(i,:)=qmean(X,IDX);%剔除噪声点后求用户该季负荷得平均值
@@ -32,3 +32,21 @@ SSE = SSE_CLUSTER(K);
 SI;
 SSE;
 
+figure(1);
+plot(results(1).sam1');xlabel('时间');ylabel('功率归一值');
+ figure(2);
+plot(results(2).sam1');
+ figure(3);
+plot(results(3).sam1');
+ figure(4);
+ plot(results(4).sam1');
+% figure(5);
+%plot(results(5).sam1');
+ %figure(6);
+%plot(results(6).sam1');
+ %figure(7);
+%plot(results(7).sam1');
+ %figure(8);
+%plot(results(8).sam1');
+ figure(9);
+plot(sam);
